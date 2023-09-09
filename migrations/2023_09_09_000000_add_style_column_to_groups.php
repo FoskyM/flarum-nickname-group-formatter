@@ -7,7 +7,7 @@ return [
     'up' => function (Builder $schema) {
         if (!$schema->hasColumn('groups', 'display_style')) {
             $schema->table('groups', function (Blueprint $table) {
-                $table->mediumText('display_style')->nullable()->default('<span style="color: {groupcolor}">{username}</span>');
+                $table->mediumText('display_style')->nullable()->default(null);
             });
         }
     },
