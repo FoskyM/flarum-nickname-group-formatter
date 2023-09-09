@@ -1,5 +1,5 @@
 {
-    "name": "foskym/flarum-nickname-group-formatter",
+    "name": "foskym/nickname-group-formatter",
     "description": "根据用户所属的组，为用户昵称添加自定义显示效果。",
     "type": "flarum-extension",
     "require": {

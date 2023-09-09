@@ -14,9 +14,6 @@ class SaveGroupStyleToDatabase
             return;
         }
 
-        /*$actor = $event->actor;
-        $group = $event->group;*/
-
         $display_style = Arr::get($event->data, $this->key);
 
         if (strlen(trim($display_style)) == 0) {
