@@ -1,14 +1,27 @@
 <?php
+namespace FoskyM\NicknameGroupFormatter;
 
-/*
- * This file is part of Flarum.
- *
- * For detailed copyright and license information, please view the
- * LICENSE file that was distributed with this source code.
- */
-
+use Flarum\Api\Serializer\GroupSerializer;
 use Flarum\Extend;
+use Flarum\Group\Event\Saving;
+use Flarum\Group\Group;
 
 return [
-    // Register extenders here to customize your forum!
+    (new Extend\Frontend('forum'))
+        ->js(__DIR__ . '/js/dist/forum.js')
+        ->css(__DIR__ . '/resources/less/forum.less'),
+
+    (new Extend\Frontend('admin'))
+        ->js(__DIR__ . '/js/dist/admin.js')
+        ->css(__DIR__ . '/resources/less/admin.less'),
+
+    new Extend\Locales(__DIR__ . '/resources/locale'),
+
+    (new Extend\Event())
+        ->listen(Saving::class, Listeners\SaveGroupStyleToDatabase::class),
+
+    (new Extend\ApiSerializer(GroupSerializer::class))
+        ->attribute('displayStyle', function (GroupSerializer $serializer, Group $group) {
+            return $group->display_style;
+        }),
 ];

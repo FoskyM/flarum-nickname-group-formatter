@@ -1,0 +1,4 @@
+foskym-nickname-group-formatter:
+  admin:
+    display: How will the nickname of the group's users be displayed?
+    optional: Optional

@@ -1,0 +1,4 @@
+foskym-nickname-group-formatter:
+  admin:
+    display: 如何展示此用户组的昵称?
+    optional: 配置
