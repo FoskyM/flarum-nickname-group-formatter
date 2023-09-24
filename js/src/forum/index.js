@@ -12,9 +12,9 @@ app.initializers.add('foskym/nickname-group-formatter', () => {
 
   extend(UserCard.prototype, 'oncreate', function (vnode) {
     if ($(this.element).hasClass('UserCard--popover')) {
-      if (app.forum.attribute('foskym-nickname-group-formatter.showInUserCardPopover') === "0")
+      if (!app.forum.attribute('foskym-nickname-group-formatter.showInUserCardPopover'))
         return;
-    } else if (app.forum.attribute('foskym-nickname-group-formatter.showInUserCard') === "0") {
+    } else if (!app.forum.attribute('foskym-nickname-group-formatter.showInUserCard')) {
       return;
     }
     const user = this.attrs.user;
@@ -39,7 +39,7 @@ app.initializers.add('foskym/nickname-group-formatter', () => {
   });
 
   extend(PostUser.prototype, 'oncreate', function () {
-    if (app.forum.attribute('foskym-nickname-group-formatter.showInUserPost') === "0") {
+    if (!app.forum.attribute('foskym-nickname-group-formatter.showInUserPost')) {
       return;
     }
     const user = this.attrs.post.user();
