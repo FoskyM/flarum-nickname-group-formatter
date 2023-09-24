@@ -2,3 +2,7 @@ foskym-nickname-group-formatter:
   admin:
     display: How will the nickname of the group's users be displayed?
     optional: Optional
+    setting:
+      showInUserPost: show in user's posts
+      showInUserCard: show in user card (user profile)
+      showInUserCardPopover: show in user card (popover)
