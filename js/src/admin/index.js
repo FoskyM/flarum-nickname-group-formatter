@@ -6,6 +6,24 @@ import Group from "flarum/common/models/Group";
 app.initializers.add('nickname-group-formatter', () => {
   Group.prototype.displayStyle = Model.attribute('displayStyle');
 
+  app.extensionData
+    .for('foskym-nickname-group-formatter')
+    .registerSetting({
+      label: app.translator.trans('foskym-nickname-group-formatter.admin.setting.showInUserPost'),
+      setting: 'foskym-nickname-group-formatter.showInUserPost',
+      type: 'boolean',
+    })
+    .registerSetting({
+      label: app.translator.trans('foskym-nickname-group-formatter.admin.setting.showInUserCard'),
+      setting: 'foskym-nickname-group-formatter.showInUserCard',
+      type: 'boolean',
+    })
+    .registerSetting({
+      label: app.translator.trans('foskym-nickname-group-formatter.admin.setting.showInUserCardPopover'),
+      setting: 'foskym-nickname-group-formatter.showInUserCardPopover',
+      type: 'boolean',
+    });
+
   extend(EditGroupModal.prototype, 'submitData', function(data) {
     data.displayStyle = this.$('textarea').val();
   });

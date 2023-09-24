@@ -1,19 +1,47 @@
 import {extend} from 'flarum/common/extend';
-import app from 'flarum/common/app';
-
+import app from 'flarum/forum/app';
 import PostUser from 'flarum/forum/components/PostUser';
 import { escape } from '../helpers/escape';
 import Group from 'flarum/common/models/Group';
 import Model from "flarum/common/Model";
+import UserCard from "flarum/forum/components/UserCard";
 
 app.initializers.add('foskym/nickname-group-formatter', () => {
   Group.prototype.displayStyle = Model.attribute('displayStyle');
 
-  extend(PostUser.prototype, 'oncreate', function () {
-    console.log(this)
-    // user card
-    if(this.element.lastChild.tagName === 'DIV') return;
 
+  extend(UserCard.prototype, 'oncreate', function (vnode) {
+    if ($(this.element).hasClass('UserCard--popover')) {
+      if (app.forum.attribute('foskym-nickname-group-formatter.showInUserCardPopover') === "0")
+        return;
+    } else if (app.forum.attribute('foskym-nickname-group-formatter.showInUserCard') === "0") {
+      return;
+    }
+    const user = this.attrs.user;
+
+    if (!user || !user.displayName()) {
+      return;
+    }
+
+    const primaryGroup = user.groups().find(group => group.displayStyle() !== null);
+
+    if (!primaryGroup) {
+      return;
+    }
+
+    const color = primaryGroup.color();
+    const displayStyle = primaryGroup.displayStyle();
+
+    this.$('.username').html(
+      displayStyle.replace(/\{username\}/g, escape(user.displayName()))
+        .replace(/\{groupcolor\}/g, color || '#FFF')
+    );
+  });
+
+  extend(PostUser.prototype, 'oncreate', function () {
+    if (app.forum.attribute('foskym-nickname-group-formatter.showInUserPost') === "0") {
+      return;
+    }
     const user = this.attrs.post.user();
 
     if (!user || !user.displayName()) {
