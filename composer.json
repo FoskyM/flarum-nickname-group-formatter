@@ -5,6 +5,13 @@
     "require": {
         "flarum/core": ">=1.8.0"
     },
+    "authors": [
+        {
+            "name": "FoskyM",
+            "email": "i@fosky.top",
+            "role": "Developer"
+        }
+    ]
     "autoload": {
         "psr-4": {
             "FoskyM\\NicknameGroupFormatter\\": "src/"
