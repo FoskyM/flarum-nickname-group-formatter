@@ -11,7 +11,7 @@
             "email": "i@fosky.top",
             "role": "Developer"
         }
-    ]
+    ],
     "autoload": {
         "psr-4": {
             "FoskyM\\NicknameGroupFormatter\\": "src/"
