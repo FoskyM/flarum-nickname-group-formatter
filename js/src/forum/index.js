@@ -3,8 +3,12 @@ import app from 'flarum/common/app';
 
 import PostUser from 'flarum/forum/components/PostUser';
 import { escape } from '../helpers/escape';
+import Group from 'flarum/common/models/Group';
+import Model from "flarum/common/Model";
 
 app.initializers.add('foskym/nickname-group-formatter', () => {
+  Group.prototype.displayStyle = Model.attribute('displayStyle');
+
   extend(PostUser.prototype, 'oncreate', function () {
     console.log(this)
     // user card
@@ -16,14 +20,14 @@ app.initializers.add('foskym/nickname-group-formatter', () => {
       return;
     }
 
-    const primaryGroup = user.groups().find(group => group.attribute('displayStyle') !== null);
+    const primaryGroup = user.groups().find(group => group.displayStyle() !== null);
 
     if (!primaryGroup) {
       return;
     }
 
-    const color = primaryGroup.attribute('color');
-    const displayStyle = primaryGroup.attribute('displayStyle');
+    const color = primaryGroup.color();
+    const displayStyle = primaryGroup.displayStyle();
 
     this.$('.username').html(
       displayStyle.replace(/\{username\}/g, escape(user.displayName()))
