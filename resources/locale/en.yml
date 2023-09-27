@@ -4,5 +4,5 @@ foskym-nickname-group-formatter:
     optional: Optional
     setting:
       showInUserPost: show in user's posts
-      showInUserCard: show in user card (user profile)
+      showInUserCard: show in user card (like user profile page)
       showInUserCardPopover: show in user card (popover)

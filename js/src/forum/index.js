@@ -9,6 +9,26 @@ import UserCard from "flarum/forum/components/UserCard";
 app.initializers.add('foskym/nickname-group-formatter', () => {
   Group.prototype.displayStyle = Model.attribute('displayStyle');
 
+  function show(e, user) {
+    if (!user || !user.displayName()) {
+      return;
+    }
+
+    const primaryGroup = user.groups().find(group => group.displayStyle() !== null);
+
+    if (!primaryGroup) {
+      return;
+    }
+
+    const color = primaryGroup.color();
+    const displayStyle = primaryGroup.displayStyle();
+
+    e.$('.username').html(
+      displayStyle.replace(/\{username\}/g, escape(user.displayName()))
+        .replace(/\{groupcolor\}/g, color || '#FFF')
+    );
+  }
+
 
   extend(UserCard.prototype, 'oncreate', function (vnode) {
     if ($(this.element).hasClass('UserCard--popover')) {
@@ -18,24 +38,7 @@ app.initializers.add('foskym/nickname-group-formatter', () => {
       return;
     }
     const user = this.attrs.user;
-
-    if (!user || !user.displayName()) {
-      return;
-    }
-
-    const primaryGroup = user.groups().find(group => group.displayStyle() !== null);
-
-    if (!primaryGroup) {
-      return;
-    }
-
-    const color = primaryGroup.color();
-    const displayStyle = primaryGroup.displayStyle();
-
-    this.$('.username').html(
-      displayStyle.replace(/\{username\}/g, escape(user.displayName()))
-        .replace(/\{groupcolor\}/g, color || '#FFF')
-    );
+    show(this, user);
   });
 
   extend(PostUser.prototype, 'oncreate', function () {
@@ -43,23 +46,6 @@ app.initializers.add('foskym/nickname-group-formatter', () => {
       return;
     }
     const user = this.attrs.post.user();
-
-    if (!user || !user.displayName()) {
-      return;
-    }
-
-    const primaryGroup = user.groups().find(group => group.displayStyle() !== null);
-
-    if (!primaryGroup) {
-      return;
-    }
-
-    const color = primaryGroup.color();
-    const displayStyle = primaryGroup.displayStyle();
-
-    this.$('.username').html(
-      displayStyle.replace(/\{username\}/g, escape(user.displayName()))
-        .replace(/\{groupcolor\}/g, color || '#FFF')
-    );
+    show(this, user);
   });
 });

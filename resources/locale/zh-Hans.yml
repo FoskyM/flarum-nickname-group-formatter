@@ -4,5 +4,5 @@ foskym-nickname-group-formatter:
     optional: 配置
     setting:
       showInUserPost: 在用户回复贴中显示
-      showInUserCard: 在用户卡片中显示（用户主页）
+      showInUserCard: 在用户卡片中显示（用户主页等）
       showInUserCardPopover: 在用户卡片中显示（弹出框）
