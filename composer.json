@@ -1,7 +1,14 @@
 {
     "name": "foskym/nickname-group-formatter",
     "description": "根据用户所属的组，为用户昵称添加自定义显示效果。",
+    "keywords": [
+        "flarum",
+        "nickname",
+        "group",
+        "formatter"
+    ],
     "type": "flarum-extension",
+    "license": "MIT",
     "require": {
         "flarum/core": ">=1.8.0"
     },
@@ -9,9 +16,14 @@
         {
             "name": "FoskyM",
             "email": "i@fosky.top",
-            "role": "Developer"
+            "role": "Developer",
+            "homepage": "https://fosky.top"
         }
     ],
+    "support": {
+        "source": "https://github.com/FoskyM/flarum-nickname-group-formatter",
+        "forum": "https://discuss.flarum.org/d/33386"
+    },
     "autoload": {
         "psr-4": {
             "FoskyM\\NicknameGroupFormatter\\": "src/"
@@ -22,7 +34,7 @@
             "title": "Nickname Group Formatter",
             "icon": {
                 "name": "fas fa-paint-brush",
-                "backgroundColor": "#5271ff",
+                "backgroundColor": "#3271ae",
                 "color": "#fff"
             }
         }
