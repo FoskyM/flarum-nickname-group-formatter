@@ -45,3 +45,5 @@ php flarum cache:clear
 - [Packagist](https://packagist.org/packages/foskym/nickname-group-formatter)
 - [GitHub](https://github.com/foskym/flarum-nickname-group-formatter)
 - [Original by DavidNery](https://github.com/DavidNery/flarum-nickname-group-formatter)
+- [Discuss](https://discuss.flarum.org/d/33386-nickname-group-formatter)
+- [DiscussCN](https://discuss.flarum.org.cn/d/15442)
